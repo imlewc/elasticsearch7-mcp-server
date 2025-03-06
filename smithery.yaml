@@ -1,0 +1,42 @@
+# Smithery configuration file: https://smithery.ai/docs/config#smitheryyaml
+
+startCommand:
+  type: stdio
+  configSchema:
+    # JSON Schema defining the configuration options for the MCP.
+    type: object
+    required:
+      - elasticHost
+      - elasticUsername
+      - elasticPassword
+    properties:
+      elasticHost:
+        type: string
+        description: Elasticsearch host address (e.g., http://localhost:9200)
+      elasticUsername:
+        type: string
+        description: Elasticsearch username
+      elasticPassword:
+        type: string
+        description: Elasticsearch password
+      mcpPort:
+        type: number
+        default: 9999
+        description: MCP server listening port (default 9999)
+  commandFunction:
+    # A JS function that produces the CLI command based on the given config to start the MCP on stdio.
+    |-
+    (config) => ({
+      command: 'elasticsearch7-mcp-server',
+      env: {
+        ELASTIC_HOST: config.elasticHost,
+        ELASTIC_USERNAME: config.elasticUsername,
+        ELASTIC_PASSWORD: config.elasticPassword,
+        MCP_PORT: config.mcpPort ? config.mcpPort.toString() : '9999'
+      }
+    })
+  exampleConfig:
+    elasticHost: http://localhost:9200
+    elasticUsername: elastic
+    elasticPassword: changeme
+    mcpPort: 9999
