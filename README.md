@@ -1,53 +1,53 @@
 # Elasticsearch 7.x MCP Server
 
-一个用于 Elasticsearch 7.x 的 MCP 服务器，提供与 Elasticsearch 7.x 版本的兼容性。
+An MCP server for Elasticsearch 7.x, providing compatibility with Elasticsearch 7.x versions.
 
-## 功能
+## Features
 
-- 提供 MCP 协议接口与 Elasticsearch 7.x 交互
-- 支持基本的 Elasticsearch 操作（ping、info 等）
-- 支持完整的搜索功能，包括聚合查询、高亮显示、排序等高级特性
-- 可以方便地通过 MCP 客户端访问 Elasticsearch 功能
+- Provides an MCP protocol interface for interacting with Elasticsearch 7.x
+- Supports basic Elasticsearch operations (ping, info, etc.)
+- Supports complete search functionality, including aggregation queries, highlighting, sorting, and other advanced features
+- Easily access Elasticsearch functionality through any MCP client
 
-## 要求
+## Requirements
 
 - Python 3.10+
-- Elasticsearch 7.x (推荐 7.17.x)
+- Elasticsearch 7.x (7.17.x recommended)
 
-## 安装
+## Installation
 
 ```bash
 pip install -e .
 ```
 
-## 环境变量
+## Environment Variables
 
-服务器需要以下环境变量：
+The server requires the following environment variables:
 
-- `ELASTIC_HOST`：Elasticsearch 主机地址（如 http://localhost:9200）
-- `ELASTIC_USERNAME`：Elasticsearch 用户名
-- `ELASTIC_PASSWORD`：Elasticsearch 密码
-- `MCP_PORT`：（可选）MCP 服务器监听端口，默认 9999
+- `ELASTIC_HOST`: Elasticsearch host address (e.g., http://localhost:9200)
+- `ELASTIC_USERNAME`: Elasticsearch username
+- `ELASTIC_PASSWORD`: Elasticsearch password
+- `MCP_PORT`: (Optional) MCP server listening port, default 9999
 
-## 使用 Docker Compose
+## Using Docker Compose
 
-1. 创建 `.env` 文件并设置 `ELASTIC_PASSWORD`：
+1. Create a `.env` file and set `ELASTIC_PASSWORD`:
 
 ```
 ELASTIC_PASSWORD=your_secure_password
 ```
 
-2. 启动服务：
+2. Start the services:
 
 ```bash
 docker-compose up -d
 ```
 
-这将启动一个三节点的 Elasticsearch 7.17.10 集群，Kibana 和 MCP 服务器。
+This will start a three-node Elasticsearch 7.17.10 cluster, Kibana, and the MCP server.
 
-## 使用 MCP 客户端
+## Using an MCP Client
 
-可以使用任何 MCP 客户端连接到 MCP 服务器：
+You can use any MCP client to connect to the MCP server:
 
 ```python
 from mcp import MCPClient
@@ -57,24 +57,24 @@ response = client.call("es-ping")
 print(response)  # {"success": true}
 ```
 
-## API 说明
+## API Documentation
 
-目前支持的 MCP 方法：
+Currently supported MCP methods:
 
-- `es-ping`：检查 Elasticsearch 连接
-- `es-info`：获取 Elasticsearch 集群信息
-- `es-search`：在 Elasticsearch 中搜索文档
+- `es-ping`: Check Elasticsearch connection
+- `es-info`: Get Elasticsearch cluster information
+- `es-search`: Search documents in Elasticsearch index
 
-### 搜索 API 示例
+### Search API Examples
 
-#### 基本搜索
+#### Basic Search
 ```python
-# 基本搜索
+# Basic search
 search_response = client.call("es-search", {
     "index": "my_index",
     "query": {
         "match": {
-            "title": "搜索关键词"
+            "title": "search keywords"
         }
     },
     "size": 10,
@@ -82,12 +82,12 @@ search_response = client.call("es-search", {
 })
 ```
 
-#### 聚合查询
+#### Aggregation Query
 ```python
-# 聚合查询
+# Aggregation query
 agg_response = client.call("es-search", {
     "index": "my_index",
-    "size": 0,  # 只需要聚合结果，不需要文档
+    "size": 0,  # Only need aggregation results, no documents
     "aggs": {
         "categories": {
             "terms": {
@@ -104,15 +104,15 @@ agg_response = client.call("es-search", {
 })
 ```
 
-#### 高级搜索
+#### Advanced Search
 ```python
-# 带有高亮、排序和过滤的高级搜索
+# Advanced search with highlighting, sorting, and filtering
 advanced_response = client.call("es-search", {
     "index": "my_index",
     "query": {
         "bool": {
             "must": [
-                {"match": {"content": "搜索词"}}
+                {"match": {"content": "search term"}}
             ],
             "filter": [
                 {"range": {"price": {"gte": 100, "lte": 200}}}
@@ -132,12 +132,14 @@ advanced_response = client.call("es-search", {
 })
 ```
 
-## 开发
+## Development
 
-1. 克隆仓库
-2. 安装开发依赖
-3. 运行服务器：`elasticsearch7-mcp-server`
+1. Clone the repository
+2. Install development dependencies
+3. Run the server: `elasticsearch7-mcp-server`
 
-## 许可
+## License
 
-[LICENSE 文件中的许可证] 
+[License in LICENSE file]
+
+*[中文文档](README-cn.md)* 
