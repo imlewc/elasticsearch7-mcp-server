@@ -1,5 +1,7 @@
 # Elasticsearch 7.x MCP Server
 
+[![smithery badge](https://smithery.ai/badge/@imlewc/elasticsearch7-mcp-server)](https://smithery.ai/server/@imlewc/elasticsearch7-mcp-server)
+
 An MCP server for Elasticsearch 7.x, providing compatibility with Elasticsearch 7.x versions.
 
 ## Features
@@ -16,6 +18,15 @@ An MCP server for Elasticsearch 7.x, providing compatibility with Elasticsearch 
 
 ## Installation
 
+### Installing via Smithery
+
+To install Elasticsearch 7.x MCP Server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@imlewc/elasticsearch7-mcp-server):
+
+```bash
+npx -y @smithery/cli install @imlewc/elasticsearch7-mcp-server --client claude
+```
+
+### Manual Installation
 ```bash
 pip install -e .
 ```
