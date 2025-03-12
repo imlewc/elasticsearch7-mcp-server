@@ -4,6 +4,10 @@
 
 An MCP server for Elasticsearch 7.x, providing compatibility with Elasticsearch 7.x versions.
 
+<a href="https://glama.ai/mcp/servers/zxwxozvlme">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/zxwxozvlme/badge" alt="Elasticsearch 7.x Server MCP server" />
+</a>
+
 ## Features
 
 - Provides an MCP protocol interface for interacting with Elasticsearch 7.x
@@ -153,4 +157,4 @@ advanced_response = client.call("es-search", {
 
 [License in LICENSE file]
 
-*[中文文档](README-cn.md)* 
+*[中文文档](README-cn.md)*
