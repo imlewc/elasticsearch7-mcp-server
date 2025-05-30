@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/imlewc-elasticsearch7-mcp-server-badge.png)](https://mseep.ai/app/imlewc-elasticsearch7-mcp-server)
+
 # Elasticsearch 7.x MCP Server
 
 [![smithery badge](https://smithery.ai/badge/@imlewc/elasticsearch7-mcp-server)](https://smithery.ai/server/@imlewc/elasticsearch7-mcp-server)
